@@ -69,6 +69,27 @@ function killTime()
     clearInterval(intervalCode)
 }
 
+function startRain() {
+    const rainContainer = document.getElementById('rain-container');
+    rainContainer.innerHTML = "";
+
+    for (let i = 0; i < 80; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('raindrop');
+
+        drop.style.left = Math.random() * 100 + "vw";
+        drop.style.animationDuration = (Math.random() * 1 + 0.5) + "s";
+
+        rainContainer.appendChild(drop);
+    }
+}
+
+function stopRain() {
+    const rainContainer = document.getElementById('rain-container');
+    rainContainer.innerHTML = "";
+}
+
+
 function displayWeather(data) {
     document.getElementById('city-name').textContent = data.name;
     document.getElementById('temperature').textContent = `Temperature: ${data.main.temp}°C`;
@@ -79,6 +100,7 @@ function displayWeather(data) {
     const currentTime = Math.floor(new Date().getTime() / 1000);
     const sunrise = data.sys.sunrise;
     const sunset = data.sys.sunset;
+    const conditioon = data.weather[0].main.toLowerCase();
 
     if (currentTime >= sunrise && currentTime < sunset) {
         // Daytime settings
@@ -92,6 +114,12 @@ function displayWeather(data) {
         document.body.style.background = "linear-gradient(to bottom right, #0f3580, #000000)";
         document.getElementById('div1').style.backgroundColor = '#a9a9a9'; // Grey sun
         document.querySelector('.container').style.color = '#fff'; // White text
+    }
+
+    if (conditioon.includes("rain")){
+        startRain();
+    } else {
+        stopRain();
     }
 }
 
