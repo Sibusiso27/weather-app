@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    transition: 2s ease-in;
+    background-color: #f0f0f054;
+}
+
+
+.container {
+    text-align: center;
+    background: #ffffff00;
+    padding: 5%;
+    border-radius: calc(1vw + 1vh);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: color 2s ease;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#weather-info {
+    margin-top: 20px;
+}
+
+#weather-info p {
+    margin: 5px 0;
+}
+
+#div1 {
+    --size: calc(5vh + 5vw);
+    width: var(--size);
+    height: var(--size);
+    top: 10%;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fcdb03;
+    transition: background-color 2s ease-in-out;
+    animation: moveSun 2000s infinite alternate;
+}
+
+@keyframes moveSun {
+    0% { left: 0%; top: 10%; }
+    50% { left: 50%; top: 5%; }
+    100% { left: 100%; top: 10%; }
+}
+
