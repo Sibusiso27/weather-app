@@ -1,3 +1,22 @@
+const weatherEmojis = {
+    clear: "☀️",
+    clouds: "☁️",
+    rain: "🌧️",
+    drizzle: "🌦️",
+    thunderstorm: "⛈️",
+    snow: "❄️",
+    mist: "🌫️",
+    fog: "🌫️",
+    haze: "🌫️",
+    smoke: "🌫️",
+    dust: "🌪️",
+    sand: "🌪️",
+    ash: "🌋",
+    squall: "💨",
+    tornado: "🌪️"
+};
+
+
 document.getElementById('search-btn').addEventListener('click', () => {
     const location = document.getElementById('location').value;
     if (location) {
@@ -60,7 +79,7 @@ function displayTime(currentTime) {
     let currentTimeDate = new Date(currentTime);
     intervalCode = setInterval(() => {
         currentTimeDate.setSeconds(currentTimeDate.getSeconds() + 1);
-        timeElement.textContent = `Local Time: ${currentTimeDate.toLocaleTimeString()}`;
+        timeElement.textContent = `◴ Local Time: ${currentTimeDate.toLocaleTimeString()}`;
     }, 1000);
 }
 
@@ -91,32 +110,36 @@ function stopRain() {
 
 
 function displayWeather(data) {
+    const condition = data.weather[0].main.toLowerCase();
+    const emoji = weatherEmojis[condition || "🌡️"];
     document.getElementById('city-name').textContent = data.name;
-    document.getElementById('temperature').textContent = `Temperature: ${data.main.temp}°C`;
-    document.getElementById('weather-description').textContent = `Condition: ${data.weather[0].description}`;
-    document.getElementById('humidity').textContent = `Humidity: ${data.main.humidity}%`;
-    document.getElementById('wind-speed').textContent = `Wind Speed: ${data.wind.speed} m/s`;
+    document.getElementById('temperature').textContent = `🌡 ${data.main.temp}°C`;
+    document.getElementById('weather-description').textContent = `⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃 Condition: ${data.weather[0].description}${emoji}`;
+    document.getElementById('humidity').textContent = `｡˚○ Humidity: ${data.main.humidity}%`;
+    document.getElementById('wind-speed').textContent = `꩜ Wind Speed: ${data.wind.speed} m/s`;
 
     const currentTime = Math.floor(new Date().getTime() / 1000);
     const sunrise = data.sys.sunrise;
     const sunset = data.sys.sunset;
-    const conditioon = data.weather[0].main.toLowerCase();
+
 
     if (currentTime >= sunrise && currentTime < sunset) {
         // Daytime settings
         document.body.classList.remove('night-sky');
-        document.body.style.background = "linear-gradient(to top left, #87CEEB, #00BFFF)";
-        document.getElementById('div1').style.backgroundColor = '#fcdb03'; // Yellow sun
+        document.body.style.backgroundImage = "url('dayTime.jpg')";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundSize = "cover";
         document.querySelector('.container').style.color = '#000'; // Dark text
     } else {
         // Nighttime settings
         document.body.classList.add('night-sky');
-        document.body.style.background = "linear-gradient(to bottom right, #0f3580, #000000)";
-        document.getElementById('div1').style.backgroundColor = '#a9a9a9'; // Grey sun
+        document.body.style.backgroundImage = "url('nightTime.jpg')";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundSize = "cover";
         document.querySelector('.container').style.color = '#fff'; // White text
     }
 
-    if (conditioon.includes("rain")){
+    if (condition.includes("rain")){
         startRain();
     } else {
         stopRain();

@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Brush Script MT', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,17 +7,24 @@ body {
     margin: 0;
     overflow: hidden;
     transition: 2s ease-in;
-    background-color: #f0f0f054;
+    background-image: url('background.jpg');
+    
+
 }
 
 
 .container {
-    text-align: center;
-    background: #ffffff00;
+    text-align: left;
+    background: #ffffff10;
     padding: 5%;
     border-radius: calc(1vw + 1vh);
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: color 2s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.404);
+    transition: color 2s ease, background 2s;
+
+}
+
+.container:hover {
+    background: #ffffff36;
 }
 
 input {
@@ -42,6 +49,7 @@ button:hover {
 
 #weather-info {
     margin-top: 20px;
+    font-family: 'Brush Script MT', cursive;
 }
 
 #weather-info p {
@@ -49,21 +57,23 @@ button:hover {
 }
 
 #div1 {
-    --size: calc(5vh + 5vw);
     width: var(--size);
     height: var(--size);
     top: 10%;
     position: absolute;
-    border-radius: 50%;
-    background-color: #fcdb03;
     transition: background-color 2s ease-in-out;
-    animation: moveSun 2000s infinite alternate;
+    animation-name: myBounce;
+    animation-duration: 2s;
+    animation-direction: reverse;
+    transition: opacity 2s;
 }
-
-@keyframes moveSun {
-    0% { left: 0%; top: 10%; }
-    50% { left: 50%; top: 5%; }
-    100% { left: 100%; top: 10%; }
+#div1:hover {
+    opacity: 20%;
+}
+@keyframes myBounce {
+    0%   {top:10%;}
+    50%  {top:20%;}
+    100% {top:10%;}
 }
 
 #rain-container {
@@ -83,13 +93,15 @@ button:hover {
     height: 10px;
     background: #cccccc;
     animation: fall linear infinite;
+    opacity: 0.5;
 }
 
 @keyframes fall {
     from {
-        transform: translateY(-100px);
+        transform: translateY(0%);
     }
     to {
-        transform: translateY(100vh);
+        transform: translateY(100%);
     }
 }
+
