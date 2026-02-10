@@ -4,30 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <input type="text" id="location" placeholder="Enter city name">
         <button id="search-btn">Search</button>
         <div id="weather-info">
-            <h1 id="city-name"></h1>
-            <h2 id="temperature"></h2>
-            <hr style="opacity: 20%;">
-            <p id="local-time"></p> 
-            <hr style="opacity: 20%;"> 
-            <p id="weather-description"></p>
-            <hr style="opacity: 20%;">
-            <p id="humidity"></p>
-            <hr style="opacity: 20%;">
+            <h2 id="city-name"></h2>
+            <h1 id="temperature"></h1>
+            <p id="local-time"></p>          
+            <p id="weather-description"></p>            
+            <p id="humidity"></p>    
             <p id="wind-speed"></p>
         </div>
     </div>
     <div id="rain-container"></div>
-    <div id="div1">
-        <p style="font-size: 200%;">Hi...</p>
-    </div>
-    <script src="script.js"></script>
+    <img id="div2" class="div2">
 </body>
 </html>
-

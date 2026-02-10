@@ -112,16 +112,19 @@ function stopRain() {
 function displayWeather(data) {
     const condition = data.weather[0].main.toLowerCase();
     const emoji = weatherEmojis[condition || "🌡️"];
-    document.getElementById('city-name').textContent = data.name;
-    document.getElementById('temperature').textContent = `🌡 ${data.main.temp}°C`;
-    document.getElementById('weather-description').textContent = `⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃 Condition: ${data.weather[0].description}${emoji}`;
-    document.getElementById('humidity').textContent = `｡˚○ Humidity: ${data.main.humidity}%`;
-    document.getElementById('wind-speed').textContent = `꩜ Wind Speed: ${data.wind.speed} m/s`;
-
     const currentTime = Math.floor(new Date().getTime() / 1000);
     const sunrise = data.sys.sunrise;
     const sunset = data.sys.sunset;
-
+    const icon = document.getElementById("div2");
+ 
+    
+    icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+    icon.style.display = "block";
+    document.getElementById('city-name').textContent = data.name;
+    document.getElementById('temperature').textContent = `🌡 ${parseInt(data.main.temp)}°C`;
+    document.getElementById('weather-description').textContent = `⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃 Condition: ${data.weather[0].description}${emoji}`;
+    document.getElementById('humidity').textContent = `｡˚○ Humidity: ${data.main.humidity}%`;
+    document.getElementById('wind-speed').textContent = `꩜ Wind Speed: ${data.wind.speed} m/s`;
 
     if (currentTime >= sunrise && currentTime < sunset) {
         // Daytime settings
@@ -129,14 +132,14 @@ function displayWeather(data) {
         document.body.style.backgroundImage = "url('dayTime.jpg')";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundSize = "cover";
-        document.querySelector('.container').style.color = '#000'; // Dark text
+        document.querySelector('.container').style.color = '#292929'; // Dark text
     } else {
         // Nighttime settings
         document.body.classList.add('night-sky');
         document.body.style.backgroundImage = "url('nightTime.jpg')";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundSize = "cover";
-        document.querySelector('.container').style.color = '#fff'; // White text
+        document.querySelector('.container').style.color = '#ffffff'; // White text
     }
 
     if (condition.includes("rain")){

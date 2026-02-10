@@ -9,71 +9,65 @@ body {
     transition: 2s ease-in;
     background-image: url('background.jpg');
     
-
 }
-
 
 .container {
     text-align: left;
-    background: #ffffff10;
+    background: #ffffff2c;
     padding: 5%;
     border-radius: calc(1vw + 1vh);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.404);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.514);
     transition: color 2s ease, background 2s;
+    backdrop-filter: blur(5px);
 
 }
 
 .container:hover {
-    background: #ffffff36;
+    background: #ffffff4d;
 }
 
 input {
-    padding: 10px;
+    padding: 10px 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 25px;
     width: 200px;
+    outline: none;
+
 }
 
 button {
-    padding: 10px 20px;
+    border-radius: 25px;
     border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
-    color: #fff;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
     cursor: pointer;
+    transition: 0.3s;
 }
-
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 #weather-info {
-    margin-top: 20px;
-    font-family: 'Brush Script MT';
+    margin-top: 10px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+
 }
 
 #weather-info p {
-    margin: 5px 0;
+    margin: 10px 0;
+    text-align: center;
 }
 
-#div1 {
-    width: var(--size);
-    height: var(--size);
-    top: 10%;
+#div2 {
+    width: 150px;
+    height: 150px;
+    top: 7%;
     position: absolute;
-    transition: background-color 2s ease-in-out;
-    animation-name: myBounce;
-    animation-duration: 2s;
-    animation-direction: reverse;
-    transition: opacity 2s;
-}
-#div1:hover {
-    opacity: 20%;
-}
-@keyframes myBounce {
-    0%   {top:10%;}
-    50%  {top:20%;}
-    100% {top:10%;}
+    border: none;
+    display: none;
 }
 
 #rain-container {
@@ -98,11 +92,10 @@ button:hover {
 
 @keyframes fall {
     from {
-        transform: translateY(0%);
+        transform: translateY(0px);
     }
     to {
-        transform: translateY(100%);
+        transform: translateY(1000px);
     }
 }
-
 
